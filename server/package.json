@@ -12,7 +12,10 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^18.15.10",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "prisma": "^4.11.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.2"
   },
   "dependencies": {
     "@trpc/server": "^10.18.0",
