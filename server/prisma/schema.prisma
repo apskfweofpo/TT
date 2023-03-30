@@ -16,7 +16,7 @@ model Department {
   name       String
   description       String?
   employees  employee[]
-  idHead Int
+  idHead Int?
 }
 
 model employee {
