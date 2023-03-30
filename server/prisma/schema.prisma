@@ -14,7 +14,7 @@ datasource db {
 model Department {
   id         Int      @id @default(autoincrement())
   name       String
-  description       String
+  description       String?
   employees  employee[]
   idHead Int
 }
@@ -25,5 +25,12 @@ model employee {
   surname   String
   post      String
   department  Department   @relation(fields: [departmentId], references: [id])
-  departmentId Int
+  departmentId Int,
+  isHead    Boolean @default(false)
+}
+
+model admin {
+  id        Int      @id @default(autoincrement())
+  login      String
+  password      String
 }
