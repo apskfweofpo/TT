@@ -15,18 +15,18 @@ const deleteDepartmentProcedure = t.procedure.input(z.object(
 
 const searchDepartmentsProcedure = t.procedure.input(z.object(
     {
-        name:z.string().optional()
+        name:z.string()
     }))
 
 
 
 export const departmentRouter = t.router({
-    addEmloyee: addDepartmentProcedure
+    addDepartment: addDepartmentProcedure
         .mutation(async (req) => {
             const result = await departmentController.addOne(req.input.name, req.input.description);
             return result;
         }),
-    deleteEmployee: deleteDepartmentProcedure
+    deleteDepartment: deleteDepartmentProcedure
         .mutation(async (req) => {
             const result = await departmentController.deleteOne(req.input.Id);
             return result;
