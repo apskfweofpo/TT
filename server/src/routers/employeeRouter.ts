@@ -1,24 +1,23 @@
 import {t} from '../trpc';
-import adminController from '../controllers/adminController';
-import {z} from "zod";
-import EmployeeController from "../controllers/employeeController";
 import {addEmployeeProcedure, deleteEmployeeProcedure} from "../validators/employeeValidator";
+import EmployeeService from "../services/employeeService";
 
 
 export const employeeRouter = t.router({
     addEmployee: addEmployeeProcedure
         .mutation(async (req) => {
-            const result = await EmployeeController.addOne(req.input.name, req.input.surname, req.input.post, req.input.departmentId,);
+            const result = await EmployeeService.addOne
+            (req.input.name, req.input.surname, req.input.post , req.input.departmentId,);
             return result;
         }),
     deleteEmployee: deleteEmployeeProcedure
         .mutation(async (req) => {
-            const result = await EmployeeController.deleteOne(req.input.Id);
+            const result = await EmployeeService.deleteOne(req.input.Id);
             return result;
         }),
     getAllEmployees: t.procedure
         .query(async () => {
-            const result = await EmployeeController.getAll();
+            const result = await EmployeeService.getAll();
             return result;
         }),
 });

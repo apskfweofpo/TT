@@ -1,6 +1,4 @@
 import {t} from '../trpc';
-import departmentController from '../controllers/departmentController';
-import {z} from "zod";
 import departmentService from "../services/departmentService";
 import {
     addDepartmentProcedure,
@@ -22,12 +20,12 @@ export const departmentRouter = t.router({
         }),
     getAllDepartments: t.procedure
         .query(async (req) => {
-            const result = await departmentController.getAll();
+            const result = await departmentService.getAll();
             return result;
         }),
     searchDepartments: searchDepartmentsProcedure
         .query(async (req) => {
-            const result = await departmentController.search(req.input.name);
+            const result = await departmentService.search(req.input.name);
             return result;
         }),
 
