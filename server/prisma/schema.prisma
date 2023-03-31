@@ -10,27 +10,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Department {
-  id         Int      @id @default(autoincrement())
-  name       String
-  description       String?
-  employees  employee[]
-  idHead Int?
+  id          Int         @id @default(autoincrement())
+  name        String
+  description String?
+  employees   employee[]
+  idHead      Int?
 }
 
 model employee {
-  id        Int      @id @default(autoincrement())
-  name      String
-  surname   String
-  post      String
-  department  Department   @relation(fields: [departmentId], references: [id])
-  departmentId Int,
-  isHead    Boolean @default(false)
+  id           Int        @id @default(autoincrement())
+  name         String
+  surname      String
+  post         String
+  department   Department @relation(fields: [departmentId], references: [id])
+  departmentId Int
+  isHead       Boolean    @default(false)
 }
 
 model admin {
-  id        Int      @id @default(autoincrement())
-  login      String
-  password      String
+  id       Int    @id @default(autoincrement())
+  login    String
+  password String
 }
