@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Department {
+model department {
   id          Int         @id @default(autoincrement())
   name        String
   description String?
@@ -23,13 +23,14 @@ model employee {
   name         String
   surname      String
   post         String
-  department   Department @relation(fields: [departmentId], references: [id])
+  department   department @relation(fields: [departmentId], references: [id])
   departmentId Int
   isHead       Boolean    @default(false)
 }
 
 model admin {
   id       Int    @id @default(autoincrement())
+  email    String
   login    String
   password String
 }
