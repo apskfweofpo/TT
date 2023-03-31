@@ -8,6 +8,7 @@ export const adminLoginSchema = z.object(
 
 export const adminRegistrationSchema = z.object(
     {
+        email: z.string(),
         login: z.string(),
         password: z.string()
     })
