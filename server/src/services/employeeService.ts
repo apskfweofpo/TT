@@ -1,29 +1,34 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+import prisma from "../prisma"
+
 
 class employeeService {
-    async addOne(name:string, description:string){
-        const newEmployee  = await prisma.employee.create({
+    async addOne(name: string, surname: string, post: string, departmentId: number) {
+        const newEmployee = await prisma.employee.create({
             data: {
                 name,
-                description
+                surname,
+                post,
+                departmentId
             }
         })
         return newEmployee
     }
-    async deleteOne(id:number){
+
+    async deleteOne(id: number) {
         const deletedDepartment = await prisma.employee.delete({
             where: {
-                id,
+                id
             },
         });
         return deletedDepartment;
     }
-    async getAll(){
+
+    async getAll() {
         const employees = await prisma.employee.findMany();
         return employees;
     }
-    async search(name:string){
+
+    async search(name: string) {
         const employees = await prisma.department.findMany({
             where: {
                 name: {
@@ -33,6 +38,7 @@ class employeeService {
         });
         return employees;
     }
+
     async togglePost(employeeId) {
         const employee = await prisma.employee.findUnique({
             where: {
