@@ -1,22 +1,16 @@
 import {t} from '../trpc';
 import adminController from '../controllers/adminController';
-import {z} from "zod";
-
-const adminProcedure = t.procedure.input(z.object(
-    {
-        login: z.string(),
-        password: z.string()
-    }))
+import {adminLoginProcedure, adminRegistrationProcedure} from "../validators/adminValidator"
 
 export const adminRouter = t.router({
-    logAdmin: adminProcedure
+    logAdmin: adminLoginProcedure
         .mutation(async (req) => {
             const result = await adminController.login(req.input.login, req.input.password);
             return result;
         }),
-    regAdmin: adminProcedure
+    regAdmin: adminRegistrationProcedure
         .mutation(async (req) => {
             const result = await adminController.registration(req.input.login, req.input.password);
-            return result;
+            return (result)
         }),
 });
